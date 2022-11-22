@@ -20,8 +20,6 @@ class MyRepository {
   Future<List<CategoryItem>> getAllCategories() =>
       apiProvider.getAllCategories();
 
-//  -----------------------------------Products------------------------------------------
-
   Future<CachedProduct> insertCachedProduct(
       {required CachedProduct cachedProduct}) async {
     return await LocalDatabase.insertCachedProduct(cachedProduct);
