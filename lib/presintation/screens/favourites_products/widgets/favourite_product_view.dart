@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../data/local_database/db/cached_fovourite_product.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/styles.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/styles.dart';
 
 class FavouriteProductView extends StatelessWidget {
   const FavouriteProductView({

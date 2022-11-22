@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app_exam/presintation/screens/tabs/cart/widgets/cart_item_view.dart';
+import 'package:shopping_app_exam/presintation/screens/shopping_main/basket/widgets/basket_item.dart';
 import '../../../../data/local_database/db/cached_product.dart';
 import '../../../../data/my_repository.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/styles.dart';
-import '../../../utils/utility_functions.dart';
-class CartScreen extends StatefulWidget {
-  const CartScreen({Key? key, required this.myRepository}) : super(key: key);
+import '../../../../utils/colors.dart';
+import '../../../../utils/styles.dart';
+import '../../../../utils/utility_functions.dart';
+class BasketScreen extends StatefulWidget {
+  const BasketScreen({Key? key, required this.myRepository}) : super(key: key);
   final MyRepository myRepository;
 
   @override
-  State<CartScreen> createState() => _CartScreenState();
+  State<BasketScreen> createState() => _BasketScreenState();
 }
 
-class _CartScreenState extends State<CartScreen> {
+class _BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class _CartScreenState extends State<CartScreen> {
                           "Rostdan ham savatchadi barcha mahsulotlarni o'chirmoqchimisiz?"),
                       actions: [
                         TextButton(
-                          child: const Text('Yes'),
+                          child: const Text('Xa'),
                           onPressed: () async {
                             await widget.myRepository.clearAllCachedProducts();
                             setState(() {});
@@ -38,7 +38,7 @@ class _CartScreenState extends State<CartScreen> {
                           },
                         ),
                         TextButton(
-                          child: const Text('No'),
+                          child: const Text("Yo'q"),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
@@ -75,7 +75,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: ListView(
                       children: List.generate(data.length, (index) {
                         var cachedItem = data[index];
-                        return CartItemView(
+                        return BasketItem(
                           cachedProduct: cachedItem,
                           onItemTap: () async {
                             await widget.myRepository.deleteCachedProductById(

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../../../data/my_repository.dart';
 import '../../../../data/repository/app_repository.dart';
-import '../cart/cart_screen.dart';
+import '../basket/basket_screen.dart';
 import '../categories/categories_screen.dart';
-class TabBox extends StatefulWidget {
-  const TabBox({Key? key}) : super(key: key);
+class MainBox extends StatefulWidget {
+  const MainBox({Key? key}) : super(key: key);
 
   @override
-  State<TabBox> createState() => _TabBoxState();
+  State<MainBox> createState() => _MainBoxState();
 }
 
-class _TabBoxState extends State<TabBox> {
+class _MainBoxState extends State<MainBox> {
   int currentIndex = 0;
   late MyRepository myRepository;
   List<Widget> screens = [];
@@ -23,7 +23,7 @@ class _TabBoxState extends State<TabBox> {
 
     screens = [
       CategoriesScreen(myRepository: myRepository),
-      CartScreen(myRepository: myRepository),
+      BasketScreen(myRepository: myRepository),
     ];
     super.initState();
   }

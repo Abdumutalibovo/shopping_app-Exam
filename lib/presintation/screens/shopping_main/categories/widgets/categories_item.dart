@@ -2,9 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../data/models/main/category_item.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/styles.dart';
-
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/styles.dart';
 
 class CategoryItemView extends StatelessWidget {
   const CategoryItemView(

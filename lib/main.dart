@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app_exam/presintation/screens/tabs/tab_box/tab_box.dart';
-
+import 'package:shopping_app_exam/presintation/screens/shopping_main/main_box/main_box_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TabBox(),
+      home: MainBox(),
     );
   }
 }

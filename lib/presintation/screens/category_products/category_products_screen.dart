@@ -5,7 +5,7 @@ import '../../../data/local_database/db/cached_product.dart';
 import '../../../data/models/main/category_item.dart';
 import '../../../data/models/main/products_item.dart';
 import '../../../data/my_repository.dart';
-import '../../utils/utility_functions.dart';
+import '../../../utils/utility_functions.dart';
 class CategoryProductsScreen extends StatefulWidget {
   const CategoryProductsScreen({
     Key? key,

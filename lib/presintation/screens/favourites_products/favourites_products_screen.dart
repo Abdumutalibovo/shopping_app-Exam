@@ -4,7 +4,7 @@ import 'package:shopping_app_exam/presintation/screens/favourites_products/widge
 import '../../../data/local_database/db/cached_fovourite_product.dart';
 import '../../../data/local_database/db/cached_product.dart';
 import '../../../data/my_repository.dart';
-import '../../utils/utility_functions.dart';
+import '../../../utils/utility_functions.dart';
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({Key? key, required this.myRepository})

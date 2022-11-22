@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../data/models/main/products_item.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/styles.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/styles.dart';
 
 class ProductsItemView extends StatelessWidget {
   const ProductsItemView(

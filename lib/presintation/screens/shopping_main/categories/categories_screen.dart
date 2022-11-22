@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app_exam/presintation/screens/tabs/categories/widgets/categories_item_view.dart';
+import 'package:shopping_app_exam/presintation/screens/shopping_main/categories/widgets/categories_item.dart';
 import '../../../../data/models/main/category_item.dart';
 import '../../../../data/my_repository.dart';
-import '../../../utils/constants.dart';
+import '../../../../utils/constants.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key, required this.myRepository})

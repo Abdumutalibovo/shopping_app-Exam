@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../data/local_database/db/cached_product.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/styles.dart';
-class CartItemView extends StatelessWidget {
-  const CartItemView(
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/styles.dart';
+class BasketItem extends StatelessWidget {
+  const BasketItem(
       {Key? key, required this.cachedProduct, required this.onItemTap})
       : super(key: key);
 
