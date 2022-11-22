@@ -18,7 +18,7 @@ class _MainBoxState extends State<MainBox> {
   @override
   void initState() {
     myRepository = MyRepository(
-      apiProvider: ApiProvider(),
+      apiProvider: AppRepository(),
     );
 
     screens = [
@@ -34,10 +34,6 @@ class _MainBoxState extends State<MainBox> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: screens[currentIndex],
-      // IndexedStack(
-      //   index: currentIndex,
-      //   children: screens,
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Theme.of(context).primaryColor,

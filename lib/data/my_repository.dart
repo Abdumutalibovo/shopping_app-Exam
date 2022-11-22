@@ -1,18 +1,15 @@
 import 'package:shopping_app_exam/data/repository/app_repository.dart';
-import 'local_database/db/cached_fovourite_product.dart';
 import 'local_database/db/cached_product.dart';
 import 'local_database/db/local_db.dart';
 import 'models/main/category_item.dart';
 import 'models/main/products_item.dart';
 
 class MyRepository {
+  final AppRepository apiProvider;
   MyRepository({
     required this.apiProvider,
   });
-
-  final ApiProvider apiProvider;
-
-  Future<List<ProductItem>> getAllProducts() => apiProvider.getAllProducts();
+  Future<List<ProductItem>> getAllProducts() => AppRepository.getAllProducts();
 
   Future<List<ProductItem>> getAllCategoryProducts({required int id}) =>
       apiProvider.getCategoryProducts(id: id);
@@ -47,24 +44,5 @@ class MyRepository {
 
   Future<int> clearAllCachedProducts() async {
     return await LocalDatabase.deleteAllCachedProducts();
-  }
-
-//  -----------------------------------Products------------------------------------------
-
-  Future<CachedFavouriteProduct> insertFavouriteProduct(
-      {required CachedFavouriteProduct favouriteProduct}) async {
-    return await LocalDatabase.insertFavouriteProduct(favouriteProduct);
-  }
-
-  Future<List<CachedFavouriteProduct>> getAllFavouriteProducts() async {
-    return await LocalDatabase.getAllFavouriteProducts();
-  }
-
-  Future<int> deleteFavouriteProductById({required int id}) async {
-    return await LocalDatabase.deleteFavouriteProductById(id);
-  }
-
-  Future<int> clearAllFavouriteProducts() async {
-    return await LocalDatabase.deleteAllFavouriteProducts();
   }
 }

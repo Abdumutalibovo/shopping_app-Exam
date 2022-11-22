@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app_exam/presintation/screens/category_products/widgets/products_item_view.dart';
-import '../../../data/local_database/db/cached_fovourite_product.dart';
 import '../../../data/local_database/db/cached_product.dart';
 import '../../../data/models/main/category_item.dart';
 import '../../../data/models/main/products_item.dart';
@@ -21,8 +20,6 @@ class CategoryProductsScreen extends StatefulWidget {
 }
 
 class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
-  List<CachedFavouriteProduct> favourites = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +28,7 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
       ),
       body: FutureBuilder<dynamic>(
         future: Future.wait([
-          widget.myRepository.getAllFavouriteProducts(),
+          widget.myRepository.getAllCategoryProducts(id: widget.category.id),
           widget.myRepository.getAllCategoryProducts(id: widget.category.id)
         ]),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -40,7 +37,6 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
               child: Text(snapshot.error.toString()),
             );
           } else if (snapshot.hasData) {
-            favourites = snapshot.data[0]! as List<CachedFavouriteProduct>;
             List<ProductItem> data = snapshot.data[1]! as List<ProductItem>;
             return GridView.count(
               padding: const EdgeInsets.all(10),
@@ -48,11 +44,10 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               childAspectRatio: 0.6,
-              children: List.generate(data.length, (index) {
+              children: List.generate(
+                  data.length, (index) {
                 var item = data[index];
                 return ProductsItemView(
-                  onFavouriteTap: () => addToFavourites(item),
-                  isFavourite: isFavouriteProduct(item),
                   item: item,
                   onTap: () => addToBasket(item),
                 );
@@ -69,26 +64,26 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
   }
 
   Future<void> addToBasket(ProductItem item) async {
-    int count = 0;
+    bool onSaved = false;
+    int savedId = 0;
+    int ElementCount = 0;
     List<CachedProduct> savedProducts =
     await widget.myRepository.getAllCachedProducts();
-    bool beforeSaved = false;
-    int savedId = 0;
     for (var element in savedProducts) {
       if (element.productId == item.id) {
-        beforeSaved = true;
+        onSaved = true;
         savedId = element.id!;
-        count = element.count;
+        ElementCount = element.count;
       }
     }
-    if (beforeSaved) {
-      count += 1;
+    if (onSaved) {
+      ElementCount += 1;
       await widget.myRepository.updateCachedProductById(
         id: savedId,
         cachedProduct: CachedProduct(
           imageUrl: item.imageUrl,
           price: item.price,
-          count: count,
+          count: ElementCount,
           name: item.name,
           productId: item.id,
         ),
@@ -104,34 +99,10 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
         ),
       );
     }
-    UtilityFunctions.getMyToast(
+    MyFunctions.getMyToast(
       message: "Mahsulot savatga muvaffaqqiyatli qo'shildi!",
     );
   }
-
-  Future<void> addToFavourites(ProductItem item) async {
-    if (favourites.map((e) => e.productId).toList().contains(item.id)) {
-      widget.myRepository.deleteFavouriteProductById(
-        id: favourites.where((e) => e.productId == item.id).toList()[0].id!,
-      );
-      setState(() {});
-    } else {
-      widget.myRepository.insertFavouriteProduct(
-        favouriteProduct: CachedFavouriteProduct(
-            imageUrl: item.imageUrl,
-            price: item.price,
-            name: item.name,
-            productId: item.id),
-      );
-      UtilityFunctions.getMyToast(
-        message: "Added to favourites!",
-      );
-      setState(() {});
-    }
-  }
-
-  bool isFavouriteProduct(ProductItem item) =>
-      favourites.map((e) => e.productId).toList().contains(item.id);
 }
 
 

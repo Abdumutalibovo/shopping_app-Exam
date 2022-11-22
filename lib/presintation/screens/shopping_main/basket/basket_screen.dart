@@ -49,7 +49,7 @@ class _BasketScreenState extends State<BasketScreen> {
             },
             child: Text(
               "Tozalash",
-              style: MyTextStyle.interSemiBold600.copyWith(
+              style: MyStyle.interSemiBold600.copyWith(
                 color: MyColors.white,
               ),
             ),
@@ -81,7 +81,7 @@ class _BasketScreenState extends State<BasketScreen> {
                             await widget.myRepository.deleteCachedProductById(
                               id: cachedItem.id!,
                             );
-                            UtilityFunctions.getMyToast(message: "O'chirildi!");
+                            MyFunctions.getMyToast(message: "O'chirildi!");
                             setState(() {});
                           },
                         );
@@ -106,14 +106,14 @@ class _BasketScreenState extends State<BasketScreen> {
                     children: [
                       Text(
                         "Umumiy summa  --->",
-                        style: MyTextStyle.interSemiBold600.copyWith(
+                        style: MyStyle.interSemiBold600.copyWith(
                           fontSize: 20,
                           color: MyColors.black,
                         ),
                       ),
                       Text(
                         "\$ $totalPrice",
-                        style: MyTextStyle.interSemiBold600.copyWith(
+                        style: MyStyle.interSemiBold600.copyWith(
                           fontSize: 20,
                           color: MyColors.C_4047C1,
                         ),

@@ -1,7 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
-import 'cached_fovourite_product.dart';
 import 'cached_product.dart';
 
 class LocalDatabase {
@@ -44,19 +43,7 @@ class LocalDatabase {
     ${ProductFields.price} $intType
     )
     ''');
-
-    await db.execute('''
-    CREATE TABLE $favouriteProductsTable (
-    ${ProductFields.id} $idType,
-    ${ProductFields.productId} $intType,
-    ${ProductFields.imageUrl} $textType,
-    ${ProductFields.name} $textType,
-    ${ProductFields.price} $intType
-    )
-    ''');
   }
-
-  //-------------------Cached Products Table-------------------
 
   static Future<CachedProduct> insertCachedProduct(
       CachedProduct cachedProduct) async {
@@ -141,41 +128,5 @@ class LocalDatabase {
   Future close() async {
     final db = await getInstance.database;
     db.close();
-  }
-
-  //-------------------Cached Favourite Products Table-------------------
-
-  static Future<CachedFavouriteProduct> insertFavouriteProduct(
-      CachedFavouriteProduct cachedFavouriteProduct) async {
-    final db = await getInstance.database;
-    final id = await db.insert(
-        favouriteProductsTable, cachedFavouriteProduct.toJson());
-    return cachedFavouriteProduct.copyWith(id: id);
-  }
-
-  static Future<List<CachedFavouriteProduct>> getAllFavouriteProducts() async {
-    final db = await getInstance.database;
-    const orderBy = "${ProductFields.name} ASC";
-    final result = await db.query(
-      favouriteProductsTable,
-      orderBy: orderBy,
-    );
-    return result.map((json) => CachedFavouriteProduct.fromJson(json)).toList();
-  }
-
-  static Future<int> deleteAllFavouriteProducts() async {
-    final db = await getInstance.database;
-    return await db.delete(favouriteProductsTable);
-  }
-
-  static Future<int> deleteFavouriteProductById(int id) async {
-    final db = await getInstance.database;
-    var t = await db.delete(favouriteProductsTable,
-        where: "${ProductFields.id}=?", whereArgs: [id]);
-    if (t > 0) {
-      return t;
-    } else {
-      return -1;
-    }
   }
 }

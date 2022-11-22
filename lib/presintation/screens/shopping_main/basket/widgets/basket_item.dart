@@ -16,7 +16,7 @@ class BasketItem extends StatelessWidget {
       title: Text(cachedProduct.name),
       subtitle: Text(
         "Mahsulotlar soni:  ${cachedProduct.count} x ${cachedProduct.price}",
-        style: MyTextStyle.interMedium500.copyWith(color: MyColors.C_4047C1),
+        style: MyStyle.interMedium500.copyWith(color: MyColors.C_4047C1),
       ),
       trailing: SizedBox(
         width: 115,

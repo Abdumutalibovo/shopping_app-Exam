@@ -4,8 +4,8 @@ import 'package:http/http.dart';
 import '../models/main/category_item.dart';
 import '../models/main/products_item.dart';
 
-class ApiProvider {
-  Future<List<ProductItem>> getAllProducts() async {
+class AppRepository {
+  static Future<List<ProductItem>> getAllProducts() async {
     try {
       Response response = await https
           .get(Uri.parse("https://third-exam.free.mockoapp.net/products"));

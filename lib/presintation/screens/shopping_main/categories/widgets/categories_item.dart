@@ -64,7 +64,7 @@ class CategoryItemView extends StatelessWidget {
               child: Text(
                 categoryItem.name,
                 textAlign: TextAlign.center,
-                style: MyTextStyle.interSemiBold600.copyWith(
+                style: MyStyle.interSemiBold600.copyWith(
                   fontSize: 18,
                   color: MyColors.black,
                 ),

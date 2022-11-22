@@ -2,7 +2,6 @@ const String productsTable = "cached_products";
 
 class ProductFields {
   static final List<String> values = [
-    /// Add all fields
     id, productId, count, name, price, imageUrl,
   ];
   static const String id = "_id";
